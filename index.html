@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/glider.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <title> Something </title>
+</head>
+<body>
+  <section id="welcome">
+    <div class="container center-content">
+      <div class="content">
+        <div class="display-1"> <div id="messg"></div> </div>
+        <div class="break-row"></div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="memories">
+    <div class="container text-center">
+      <div class="center-content-carousel">
+        <h1 class="my-4"> Hope you like it :) </h1>
+        <div class="glider-content multiple">
+          <div class="glider">
+            <div>
+              <img src="assets/images/1.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/2.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/3.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/4.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/5.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/6.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/7.jpg" alt="Photo" class="img-portrait">
+            </div>
+            <div>
+              <img src="assets/images/8.jpg" alt="Photo" class="img-portrait">
+            </div>
+          </div>
+
+          <div id="dots" class="gider-dots"></div>
+        </div>
+
+        <button class="btn btn-primary mt-4" id="more"> More </button>
+      </div>
+    </div>
+
+  </section>
+  <section id="gallery">
+    <div class="container center-content text-center">
+      <div class="content">
+        <h1> Our Gallery </h1>
+        <img src="assets/images/7.jpg" alt="Photo" class="img-square">
+        <img src="assets/images/8.jpg" alt="Photo" class="img-square">
+        <img src="assets/images/9.jpg" alt="Photo" class="img-square">
+        <img src="assets/images/10.jpg" alt="Photo" class="img-square">
+        <img src="assets/images/11.jpeg" alt="Photo" class="img-square">
+        <img src="assets/images/12.jpeg" alt="Photo" class="img-square">
+        <img src="assets/images/13.jpeg" alt="Photo" class="img-square">
+        <img src="assets/images/14.jpeg" alt="Photo" class="img-square">
+      </div>
+    </div>
+  </section>
+
+  <script src="assets/js/glider.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var val = 0
+    
+
+    /* Clear hash */
+    window.onload = function() {
+      window.location.hash = "";
+      window.location.href.substr(0, window.location.href.indexOf('#'))
+
+      /* Glider */
+      new Glider(document.querySelector('.glider'), {
+        slidesToShow: 5.6,
+        slidesToScroll: 2,
+        draggable: true,
+        dots: '#dots'
+      })
+    }
+
+    $(document).bind('mousewheel', function(e) {
+      var delta = e.originalEvent.wheelDelta;
+      val += delta
+      console.log(val)
+      
+      if (val <= -1000) {
+        window.location.hash = "memories";
+      } 
+      
+      if (val <= -3000) {
+        window.location.hash = "gallery"
+      } 
+
+      if (val >= 100) {
+        window.location.hash = "welcome"
+      }
+    });
+
+    document.getElementById("more").onclick = function() {
+      window.location.hash = "gallery"
+    }
+
+    $(function () {
+      let messages = [
+      "Hai, aku ingin bilang sesuatu kepadamu!",
+      "Barakallah Fii Umrik, Sarah",
+      "Selamat ulang tahun!",
+      "Banyak kenangan yang telah kita lalui bersama",
+      "Dan aku akan membuatnya untukmu!"]
+      let index = 0
+
+      function cycle() {
+          $('#messg').html(messages[index])
+          index++;
+
+          if (index === messages.length + 1) {
+            window.location.hash = "memories"
+          }
+
+          setTimeout(cycle, 2000);
+      }
+
+      cycle();
+    });
+
+  </script>
+</body>
+</html>
